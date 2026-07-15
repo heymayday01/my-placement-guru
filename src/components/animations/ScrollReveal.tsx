@@ -9,20 +9,25 @@ interface ScrollRevealProps {
   delay?: number
   duration?: number
   direction?: 'up' | 'left' | 'right' | 'none'
+  once?: boolean
 }
 
-export function ScrollReveal({ 
-  children, 
-  className = '', 
-  delay = 0, 
-  duration = 0.8,
-  direction = 'none'
+export function ScrollReveal({
+  children,
+  className = '',
+  delay = 0,
+  duration = 0.6,
+  direction = 'none',
+  once = true,
 }: ScrollRevealProps) {
-  
   const prefersReducedMotion = useReducedMotion()
-  
-  const yOffset = direction === 'up' ? 30 : 0
-  const xOffset = direction === 'left' ? -30 : direction === 'right' ? 30 : 0
+
+  // Smaller offsets on mobile for snappier feel
+  const isMobile = typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches
+  const offset = isMobile ? 20 : 30
+
+  const yOffset = direction === 'up' ? offset : 0
+  const xOffset = direction === 'left' ? -offset : direction === 'right' ? offset : 0
 
   if (prefersReducedMotion) {
     return <div className={className}>{children}</div>
@@ -31,21 +36,21 @@ export function ScrollReveal({
   return (
     <LazyMotion features={domAnimation}>
       <m.div
-        initial={{ 
+        initial={{
           y: yOffset,
           x: xOffset,
-          opacity: 0
+          opacity: 0,
         }}
-        whileInView={{ 
+        whileInView={{
           y: 0,
           x: 0,
-          opacity: 1
+          opacity: 1,
         }}
-        viewport={{ once: true }}
-        transition={{ 
-          duration, 
+        viewport={{ once, margin: '-40px' }}
+        transition={{
+          duration,
           delay,
-          ease: [0.22, 1, 0.36, 1]
+          ease: [0.22, 1, 0.36, 1],
         }}
         className={className}
       >

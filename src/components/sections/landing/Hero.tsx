@@ -5,7 +5,6 @@ import { m, LazyMotion, domAnimation } from "framer-motion";
 import { SplitText } from "@/components/animations/SplitText";
 import { ScrollReveal } from "@/components/animations/ScrollReveal";
 import { Button } from "@/components/ui/Button";
-import { Card } from "@/components/ui/Card";
 import Image from "next/image";
 import { LogoMarquee } from "@/components/smoothui/logo-cloud-3/Logos";
 import { BookOpen, CalendarBlank, Clock } from "@phosphor-icons/react";
@@ -20,9 +19,9 @@ import {
 export interface HeroProps {
   duration?: string;
   startDate?: string;
-  startDateTime?: string; // ISO date for SEO
+  startDateTime?: string;
   timeRange?: string;
-  timeDateTime?: string; // ISO time for SEO
+  timeDateTime?: string;
 }
 
 export function Hero({
@@ -33,167 +32,171 @@ export function Hero({
   timeDateTime = FREE_TIME_ISO,
 }: HeroProps) {
   return (
-    <section className="overflow-hidden relative lg:pt-5 mb-10">
+    <section className="relative overflow-hidden mb-8 md:mb-10">
+      {/* Background image with overlay */}
       <div
-        className="bg-cover bg-no-repeat rounded-3xl pt-10 pb-10 md:p-10 md:pb-15 mt-5 "
+        className="absolute inset-0 bg-cover bg-no-repeat"
         style={{
-          backgroundImage:
-            "url('/Images/a.jpg')",
+          backgroundImage: "url('/Images/a.jpg')",
         }}
-      >
-        <div className="max-w-5xl mx-auto px-6 lg:px-8 relative z-10 ">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+      />
+      <div className="absolute inset-0 bg-black/40" />
+
+      {/* Content */}
+      <div className="relative z-10 px-4 sm:px-6 lg:px-8 pt-12 pb-10 md:pt-16 md:pb-14">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
             {/* ── Left Column: Copy ── */}
-            <div className="lg:col-span-7 flex flex-col items-start gap-4">
+            <div className="lg:col-span-7 flex flex-col items-center lg:items-start gap-3 text-center lg:text-left">
               <SplitText
                 text="Stop Applying. Start Getting Hired."
                 as="h1"
-                className="text-balance font-display text-[28px] sm:text-3xl md:text-5xl font-medium leading-[1.05] text-white m-0"
+                className="text-balance font-display text-[26px] xs:text-[28px] sm:text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.08] text-white m-0"
                 by="word"
-                staggerDelay={0.07}
+                staggerDelay={0.05}
               />
 
-              <ScrollReveal delay={0.55}>
-                <p className="text-[18px] font-bold leading-[1.55] text-white/80 m-0 text-balance">
-                  <b>Learn </b> the Hiring Manager's Secret to cracking top IT
-                  &amp; Marketing roles from a <b>Founder</b> who's been on both
+              <ScrollReveal delay={0.4}>
+                <p className="text-[14px] sm:text-[16px] md:text-[18px] font-medium leading-[1.5] text-white/85 m-0 text-balance max-w-xl">
+                  Learn the Hiring Manager's Secret to cracking top IT
+                  &amp; Marketing roles from a <b className="text-white">Founder</b> who's been on both
                   sides of the table.
                 </p>
               </ScrollReveal>
-              <ScrollReveal delay={0.65}>
-                <div className="flex flex-wrap gap-3 items-center mt-4 mb-6">
-                  {/* Duration Pill */}
-                  <div className="inline-flex items-center gap-2.5 px-4 py-2.5 bg-white rounded-xl shadow-[var(--shadow-soft-lift)] border border-[var(--color-hairline)] text-[14px] font-semibold text-[var(--color-ink)] uppercase tracking-wide">
-                    <BookOpen size={18} className="text-[var(--color-primary)]" weight="bold" />
+
+              {/* Info pills */}
+              <ScrollReveal delay={0.5}>
+                <div className="flex flex-wrap gap-2 sm:gap-3 justify-center lg:justify-start items-center mt-2 mb-3">
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-1.5 sm:px-3.5 sm:py-2 bg-white/95 backdrop-blur-sm rounded-lg shadow-sm text-[11px] sm:text-[13px] font-semibold text-[var(--color-ink)] uppercase tracking-wide">
+                    <BookOpen size={14} className="text-[var(--color-primary)]" weight="bold" />
                     <span>{duration}</span>
                   </div>
-
-                  {/* Date Pill */}
-                  <div className="inline-flex items-center gap-2.5 px-4 py-2.5 bg-white rounded-xl shadow-[var(--shadow-soft-lift)] border border-[var(--color-hairline)] text-[14px] font-semibold text-[var(--color-ink)] uppercase tracking-wide">
-                    <CalendarBlank size={18} className="text-[var(--color-primary)]" weight="bold" />
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-1.5 sm:px-3.5 sm:py-2 bg-white/95 backdrop-blur-sm rounded-lg shadow-sm text-[11px] sm:text-[13px] font-semibold text-[var(--color-ink)] uppercase tracking-wide">
+                    <CalendarBlank size={14} className="text-[var(--color-primary)]" weight="bold" />
                     <time dateTime={startDateTime}>{startDate}</time>
                   </div>
-
-                  {/* Time Pill */}
-                  <div className="inline-flex items-center gap-2.5 px-4 py-2.5 bg-white rounded-xl shadow-[var(--shadow-soft-lift)] border border-[var(--color-hairline)] text-[14px] font-semibold text-[var(--color-ink)] uppercase tracking-wide">
-                    <Clock size={18} className="text-[var(--color-primary)]" weight="bold" />
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-1.5 sm:px-3.5 sm:py-2 bg-white/95 backdrop-blur-sm rounded-lg shadow-sm text-[11px] sm:text-[13px] font-semibold text-[var(--color-ink)] uppercase tracking-wide">
+                    <Clock size={14} className="text-[var(--color-primary)]" weight="bold" />
                     <time dateTime={timeDateTime}>{timeRange}</time>
                   </div>
                 </div>
               </ScrollReveal>
 
-              {/* Event Schema Markup for SEO */}
-              <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                  __html: JSON.stringify({
-                    "@context": "https://schema.org",
-                    "@type": "Event",
-                    "name": "Stop Applying. Start Getting Hired. Masterclass",
-                    "description": "Learn the Hiring Manager's Secret to cracking top IT & Marketing roles from a Founder who's been on both sides of the table.",
-                    "startDate": `${startDateTime}T${timeDateTime}`,
-                    "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
-                    "eventStatus": "https://schema.org/EventScheduled",
-                    "location": {
-                      "@type": "VirtualLocation",
-                      "url": "https://myplacementguru.com"
-                    },
-                    "organizer": {
-                      "@type": "Organization",
-                      "name": "MyPlacementGuru",
-                      "url": "https://myplacementguru.com"
-                    },
-                    "offers": {
-                      "@type": "Offer",
-                      "price": "0",
-                      "priceCurrency": "INR",
-                      "availability": "https://schema.org/InStock",
-                      "validFrom": "2026-07-13"
-                    }
-                  })
-                }}
-              />
-              <ScrollReveal delay={0.75}>
+              {/* CTA */}
+              <ScrollReveal delay={0.6}>
                 <Button
-                  className="relative z-10 box-border mb-5 inline-flex items-center justify-center bg-green-600 text-white border border-white/40 rounded-xl px-8 sm:px-10 py-2.5 text-base leading-none font-normal tracking-[-0.02em] shadow-[0_18px_36px_rgba(0,0,0,0.12),0_3px_6px_rgba(0,0,0,0.20),inset_0_0_6px_2px_rgba(255,255,255,0.24)]"
+                  className="relative z-10 inline-flex items-center justify-center bg-green-600 text-white border border-white/30 rounded-xl px-6 sm:px-8 py-2.5 text-sm sm:text-base font-semibold tracking-tight shadow-lg hover:bg-green-700 transition-colors"
                   size="lg"
                   href="/register"
                 >
                   Register for Free →
                 </Button>
+              </ScrollReveal>
 
-                <p className="font-semibold text-[18px] mt-1 font-normal leading-[1.55] text-white/80 max-w-[540px] m-0 text-balance">
+              <ScrollReveal delay={0.7}>
+                <p className="text-[13px] sm:text-[15px] font-medium leading-[1.5] text-white/75 m-0 text-balance mt-1">
                   To Get Placed at Top Companies
                 </p>
+              </ScrollReveal>
 
+              {/* Logo marquee */}
+              <ScrollReveal delay={0.8} className="w-full mt-3">
                 <LogoMarquee title="" description="" speed="fast" />
               </ScrollReveal>
             </div>
 
             {/* ── Right Column: Photo + Floating Stat Cards ── */}
-            <div className="lg:col-span-5 relative lg:mt-0">
+            <div className="lg:col-span-5 relative mt-4 lg:mt-0">
               <LazyMotion features={domAnimation}>
-                {/* Photo frame */}
+                {/* Photo frame — larger on mobile, proper aspect ratio */}
                 <m.div
-                  transition={{
-                    duration: 0.9,
-                    delay: 0.3,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                  className="aspect-[4/5] rounded-[var(--rounded-xl)]  overflow-hidden shadow-[var(--shadow-soft-lift)] relative"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  className="relative mx-auto w-full max-w-[280px] sm:max-w-[340px] lg:max-w-none aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-fog)] to-[var(--color-cloud)] flex items-center justify-center">
-                    <span className="text-[var(--color-graphite)] border-2 rounded-2xl border-green-100 text-[13px] w-full h-full overflow-hidden ">
-                      <Image
-                        src="/Images/hero-mentor.png"
-                        alt="Sarang Thakre — Career Mastery Mentor"
-                        width={896}
-                        height={1195}
-                        className="w-full h-full object-cover"
-                      />
-                    </span>
-                  </div>
+                  <Image
+                    src="/Images/hero-mentor.png"
+                    alt="Sarang Thakre — Career Mastery Mentor"
+                    width={896}
+                    height={1195}
+                    priority
+                    className="w-full h-full object-cover"
+                  />
+                  {/* Subtle gradient overlay at bottom for depth */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
                 </m.div>
 
-                {/* Stat card – top left */}
+                {/* Stat card – top left — positioned inside frame on mobile, outside on desktop */}
                 <m.div
                   initial={{ opacity: 0, y: 16, scale: 0.9 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ type: "spring", delay: 0.7 }}
-                  className="absolute top-2 left-2 sm:top-[-20px] sm:left-[-20px] z-20"
+                  transition={{ type: "spring", delay: 0.7, damping: 20 }}
+                  className="absolute top-2 left-2 lg:top-[-16px] lg:left-[-16px] z-20"
                 >
-                  <Card variant="product" className="px-4 py-3 sm:px-5 sm:py-3.5">
-                    <span className="font-display text-[18px] sm:text-[22px] font-bold text-[var(--color-ink)] block">
+                  <div className="bg-white rounded-xl shadow-lg px-3 py-2 lg:px-4 lg:py-2.5 border border-[var(--color-hairline)]">
+                    <span className="font-display text-[16px] lg:text-[20px] font-bold text-[var(--color-ink)] block leading-tight">
                       5+ Years
                     </span>
-                    <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.12em] uppercase text-[var(--color-primary)]">
+                    <span className="text-[8px] lg:text-[10px] font-semibold tracking-[0.1em] uppercase text-[var(--color-primary)]">
                       IT Experience
                     </span>
-                  </Card>
+                  </div>
                 </m.div>
 
                 {/* Stat card – bottom right */}
                 <m.div
                   initial={{ opacity: 0, y: 16, scale: 0.9 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ type: "spring", delay: 0.95 }}
-                  className="absolute bottom-2 right-2 sm:bottom-[-24px] sm:right-[-16px] z-20"
+                  transition={{ type: "spring", delay: 0.9, damping: 20 }}
+                  className="absolute bottom-2 right-2 lg:bottom-[-16px] lg:right-[-16px] z-20"
                 >
-                  <Card variant="product" className="px-4 py-3 sm:px-5 sm:py-3.5">
-                    <span className="font-display text-[18px] sm:text-[22px] font-bold text-[var(--color-ink)] block">
+                  <div className="bg-white rounded-xl shadow-lg px-3 py-2 lg:px-4 lg:py-2.5 border border-[var(--color-hairline)]">
+                    <span className="font-display text-[16px] lg:text-[20px] font-bold text-[var(--color-ink)] block leading-tight">
                       2
                     </span>
-                    <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.12em] uppercase text-[var(--color-charcoal)]">
+                    <span className="text-[8px] lg:text-[10px] font-semibold tracking-[0.1em] uppercase text-[var(--color-charcoal)]">
                       Companies Founded
                     </span>
-                  </Card>
+                  </div>
                 </m.div>
               </LazyMotion>
             </div>
           </div>
         </div>
-
       </div>
+
+      {/* Event Schema Markup for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Event",
+            "name": "Stop Applying. Start Getting Hired. Masterclass",
+            "description": "Learn the Hiring Manager's Secret to cracking top IT & Marketing roles from a Founder who's been on both sides of the table.",
+            "startDate": `${startDateTime}T${timeDateTime}`,
+            "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
+            "eventStatus": "https://schema.org/EventScheduled",
+            "location": {
+              "@type": "VirtualLocation",
+              "url": "https://myplacementguru.com"
+            },
+            "organizer": {
+              "@type": "Organization",
+              "name": "MyPlacementGuru",
+              "url": "https://myplacementguru.com"
+            },
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "INR",
+              "availability": "https://schema.org/InStock",
+              "validFrom": "2026-07-13"
+            }
+          })
+        }}
+      />
     </section>
   );
 }

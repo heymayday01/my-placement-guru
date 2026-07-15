@@ -12,7 +12,7 @@ interface SplitTextProps {
   staggerDelay?: number
 }
 
-export function SplitText({ text, as: Component = 'div', className = '', style, by = 'word', staggerDelay = 0.05 }: SplitTextProps) {
+export function SplitText({ text, as: Component = 'div', className = '', style, by = 'word', staggerDelay = 0.04 }: SplitTextProps) {
   const prefersReducedMotion = useReducedMotion()
 
   if (prefersReducedMotion) {
@@ -32,13 +32,13 @@ export function SplitText({ text, as: Component = 'div', className = '', style, 
             <m.span
               key={i}
               className="inline-block"
-              initial={{ y: 20, opacity: 0 }}
+              initial={{ y: 16, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: '-20px' }}
               transition={{
-                duration: 0.5,
+                duration: 0.4,
                 delay: i * staggerDelay,
-                ease: [0.22, 1, 0.36, 1]
+                ease: [0.22, 1, 0.36, 1],
               }}
               aria-hidden="true"
             >

@@ -17,7 +17,7 @@ const STATS = [
     label: 'Average time a hiring manager spends on a resume',
     color: 'var(--color-ink)',
   },
-  { 
+  {
     value: '70',
     suffix: '%',
     label: 'Of jobs are never publicly posted',
@@ -27,30 +27,32 @@ const STATS = [
 
 export function RealityCheck() {
   return (
-    <section className="bg-gray-100 max-w-6xl mx-auto container overflow-hidden rounded-2xl p-7 mb-10">
-      <div className="w-auto relative flex-col items-center text-center pb-10 ">
-        <div className="mb-7">
-               <ScrollReveal delay={0.1}>
-            <h2 className="font-semibold text-3xl md:text-5xl leading-[1.05] text-[var(--color-ink)] mb-2 text-balance ">
+    <section className="bg-gray-100 max-w-6xl mx-auto overflow-hidden rounded-2xl p-5 sm:p-7 mb-8 md:mb-10">
+      <div className="flex flex-col items-center text-center pb-8">
+        {/* Heading */}
+        <div className="mb-6 md:mb-7">
+          <ScrollReveal delay={0.1}>
+            <h2 className="font-semibold text-2xl sm:text-3xl md:text-5xl leading-[1.1] text-[var(--color-ink)] mb-1 text-balance">
               The Truth Is
             </h2>
           </ScrollReveal>
-          <ScrollReveal delay={0.1}>
-            <h2 className="sub-title">
+          <ScrollReveal delay={0.15}>
+            <p className="text-[15px] sm:text-[18px] opacity-90 md:text-2xl font-medium leading-[1.1] mb-1 text-balance">
               Colleges teach you the syllabus.
-            </h2>
+            </p>
           </ScrollReveal>
           <ScrollReveal delay={0.22}>
-            <h2 className="sub-title text-[var(--color-primary)]">
-              They don't teach you the Selection.
-            </h2>
+            <p className="text-[15px] sm:text-[18px] opacity-90 md:text-2xl font-medium leading-[1.1] text-[var(--color-primary)] text-balance">
+              They don&apos;t teach you the Selection.
+            </p>
           </ScrollReveal>
         </div>
 
-        <div className="grid grid-cols-3 gap-2 md:gap-6 w-full md:w-2/3 mx-auto">
+        {/* Stats grid — 3 columns on all sizes, but compact on mobile */}
+        <div className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-6 w-full md:w-2/3 mx-auto">
           {STATS.map((stat, i) => (
-            <ScrollReveal key={i} delay={0.35 + i * 0.1} direction="up">
-              <div className="bg-[var(--color-canvas)] rounded-[var(--rounded-xl)] shadow-[var(--shadow-soft-lift)] p-3 md:p-5 flex flex-col items-center justify-center text-center font-bold gap-2.5 h-full min-h-[160px] md:min-h-[200px] border-thin">
+            <ScrollReveal key={i} delay={0.3 + i * 0.08} direction="up">
+              <div className="bg-[var(--color-canvas)] rounded-xl shadow-[var(--shadow-soft-lift)] p-2.5 sm:p-4 md:p-5 flex flex-col items-center justify-center text-center gap-1.5 sm:gap-2 h-full min-h-[130px] sm:min-h-[160px] md:min-h-[200px] border border-[var(--color-hairline)]">
                 <CounterStat
                   value={stat.value}
                   suffix={stat.suffix}
@@ -63,10 +65,10 @@ export function RealityCheck() {
           ))}
         </div>
 
-        <ScrollReveal delay={0.75}>
-          <p className="text-para mt-10 text-balance mx-auto w-full md:w-2/3">
-            Are you part of that 90%? If your resume isn't built for the algorithm,
-            you're invisible — no matter how good you actually are.
+        <ScrollReveal delay={0.6}>
+          <p className="text-para mt-8 text-balance mx-auto w-full md:w-2/3">
+            Are you part of that 90%? If your resume isn&apos;t built for the algorithm,
+            you&apos;re invisible — no matter how good you actually are.
           </p>
         </ScrollReveal>
       </div>

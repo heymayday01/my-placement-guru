@@ -57,7 +57,7 @@ export function AboutMentor({
   ]
 }: AboutMentorProps) {
   return (
-    <section className="max-w-6xl mx-auto lg:py-0 px-5 overflow-hidden rounded-3xl bg-gray-100">
+    <section className="max-w-6xl mx-auto lg:py-0 px-4 sm:px-5 overflow-hidden rounded-2xl sm:rounded-3xl bg-gray-100 mt-8 md:mt-10">
       {/* Person Schema Markup for SEO */}
       <script
         type="application/ld+json"
@@ -83,21 +83,21 @@ export function AboutMentor({
         }}
       />
 
-      <div className="max-w-5xl mx-auto p-4 md:p-10">
+      <div className="max-w-5xl mx-auto p-4 sm:p-6 md:p-10">
         {/* ── Heading: Always top center ── */}
         <ScrollReveal delay={0.1}>
-          <h2 className="title mb-8 md:mb-8">
+          <h2 className="title mb-6 md:mb-8">
             Meet your Mentor
           </h2>
         </ScrollReveal>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-start">
           
           {/* ── Left Column: Portrait Card + Stats ── */}
-          <div className="lg:col-span-5 w-full flex flex-col items-center gap-6 md:max-w-2xl md:mx-auto lg:max-w-none">
-            <ScrollReveal direction="left" className="w-full max-w-[360px] md:max-w-2xl lg:max-w-[368px] mx-auto">
-              <div className="w-full bg-white rounded-3xl border-2 border-black/50 shadow-[var(--shadow-float)] text-black flex flex-col p-3 items-center">
-                <div className="w-60 h-60 lg:w-80 lg:h-80 rounded-3xl overflow-hidden bg-[#faf8f5] relative border-2 border-black/50 p-2">
+          <div className="lg:col-span-5 w-full flex flex-col items-center gap-5 lg:gap-6">
+            <ScrollReveal direction="left" className="w-full max-w-[280px] sm:max-w-[340px] lg:max-w-[368px] mx-auto">
+              <div className="w-full bg-white rounded-2xl sm:rounded-3xl border-2 border-black/40 shadow-[var(--shadow-float)] text-black flex flex-col p-3 items-center">
+                <div className="w-full aspect-square max-w-[240px] sm:max-w-[280px] lg:max-w-[320px] rounded-2xl overflow-hidden bg-[#faf8f5] relative border-2 border-black/40 p-2">
                   <Image
                     src={imageSrc}
                     alt={name}
@@ -107,11 +107,11 @@ export function AboutMentor({
                     priority
                   />
                 </div>
-                <div className="flex flex-col gap-1 px-1 py-1 items-center">
-                  <h3 className="font-display text-[22px] font-bold text-[var(--color-ink)] leading-none mt-3">
+                <div className="flex flex-col gap-1 px-1 py-1 items-center mt-3">
+                  <h3 className="font-display text-[18px] sm:text-[22px] font-bold text-[var(--color-ink)] leading-none">
                     {name}
                   </h3>
-                  <p className="font-body text-[14px] text-[var(--color-graphite)] font-semibold leading-normal m-0 mt-2">
+                  <p className="font-body text-[12px] sm:text-[14px] text-[var(--color-graphite)] font-semibold leading-normal m-0 mt-1.5 text-center">
                     {title}
                   </p>
                 </div>
@@ -189,7 +189,7 @@ export function AboutMentor({
 
             {/* Horizontal Stats – visible on mobile and tablet, hidden on desktop */}
             <ScrollReveal delay={0.55} className="w-full lg:hidden">
-              <div className="flex flex-row gap-2 sm:gap-4 w-full justify-between">
+              <div className="grid grid-cols-3 gap-2 w-full">
                 {stats.map((stat, i) => {
                   let IconComponent = Briefcase
                   let iconBgClass = "bg-green-100 text-green-700"
@@ -205,37 +205,37 @@ export function AboutMentor({
                   return (
                     <div
                       key={i}
-                      className="flex-1 flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-1.5 sm:gap-3 bg-white rounded-xl p-2 sm:p-4 border border-black/5 shadow-[var(--shadow-soft-lift)] text-black min-w-0"
+                      className="flex flex-col items-center justify-center gap-1.5 bg-white rounded-xl p-2.5 sm:p-3 border border-black/5 shadow-[var(--shadow-soft-lift)] text-black min-w-0"
                     >
                       {/* Icon Container */}
-                      <div className={`w-6 h-6 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center shrink-0 ${iconBgClass}`}>
-                        <IconComponent size={14} className="w-3.5 h-3.5 sm:w-5 sm:h-5" weight="fill" />
+                      <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center shrink-0 ${iconBgClass}`}>
+                        <IconComponent size={16} className="sm:w-5 sm:h-5" weight="fill" />
                       </div>
 
                       {/* Content Container */}
-                      <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 w-full min-w-0 text-center sm:text-left">
+                      <div className="flex flex-col gap-0.5 w-full min-w-0 text-center">
                         {/* Primary Metric */}
                         <div className="flex flex-col leading-tight min-w-0">
-                          <span className="font-display text-[10px] sm:text-[15px] font-bold text-[var(--color-ink)] whitespace-nowrap">
+                          <span className="font-display text-[12px] sm:text-[15px] font-bold text-[var(--color-ink)] whitespace-nowrap">
                             {stat.primaryMetric}
                           </span>
-                          <span className="text-[7px] sm:text-[9px] font-semibold text-[var(--color-graphite)] uppercase tracking-wide">
+                          <span className="text-[8px] sm:text-[9px] font-semibold text-[var(--color-graphite)] uppercase tracking-wide">
                             {stat.primaryLabel}
                           </span>
                         </div>
 
                         {/* Optional Divider */}
                         {stat.secondaryMetric && (
-                          <div className="hidden sm:block w-[1px] h-6 bg-black/10 shrink-0 mx-0.5" />
+                          <div className="hidden sm:block w-full h-px bg-black/10 shrink-0 my-0.5" />
                         )}
 
                         {/* Secondary Metric */}
                         {stat.secondaryMetric && (
                           <div className="flex flex-col leading-tight min-w-0 border-t border-black/5 sm:border-t-0 pt-0.5 sm:pt-0">
-                            <span className="font-display text-[10px] sm:text-[15px] font-bold text-[var(--color-ink)] whitespace-nowrap">
+                            <span className="font-display text-[12px] sm:text-[15px] font-bold text-[var(--color-ink)] whitespace-nowrap">
                               {stat.secondaryMetric}
                             </span>
-                            <span className="text-[7px] sm:text-[9px] font-semibold text-[var(--color-graphite)] uppercase tracking-wide">
+                            <span className="text-[8px] sm:text-[9px] font-semibold text-[var(--color-graphite)] uppercase tracking-wide">
                               {stat.secondaryLabel}
                             </span>
                           </div>

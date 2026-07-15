@@ -10,7 +10,7 @@ export function WhatsAppCTA() {
   const [showTooltip, setShowTooltip] = useState(false);
 
   useEffect(() => {
-    const t = setTimeout(() => setIsVisible(true), 3000);
+    const t = setTimeout(() => setIsVisible(true), 2500);
     return () => clearTimeout(t);
   }, []);
 
@@ -19,20 +19,22 @@ export function WhatsAppCTA() {
       <AnimatePresence>
         {isVisible && (
           <m.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 40 }}
-            transition={{ type: "spring", damping: 22, stiffness: 120 }}
-            className="fixed bottom-[88px] right-4 sm:bottom-6 sm:right-6 md:bottom-10 md:right-10 z-[60] flex items-center gap-3"
+            initial={{ opacity: 0, scale: 0.5, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.5, y: 20 }}
+            transition={{ type: "spring", damping: 20, stiffness: 200 }}
+            className="fixed bottom-5 right-4 z-50 flex items-center gap-2"
             onMouseEnter={() => setShowTooltip(true)}
             onMouseLeave={() => setShowTooltip(false)}
           >
+            {/* Tooltip — desktop only */}
             <AnimatePresence>
               {showTooltip && (
                 <m.div
-                  initial={{ opacity: 0, x: 12 }}
+                  initial={{ opacity: 0, x: 10 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 10 }}
+                  transition={{ duration: 0.2 }}
                   style={{
                     backgroundColor: "var(--color-ink)",
                     color: "var(--color-on-ink)",
@@ -50,30 +52,41 @@ export function WhatsAppCTA() {
               )}
             </AnimatePresence>
 
+            {/* Pulsing ring behind button */}
+            <span
+              className="absolute right-0 bottom-0 w-12 h-12 rounded-full"
+              style={{
+                backgroundColor: "#25D366",
+                opacity: 0.3,
+                animation: "wa-pulse 2s ease-in-out infinite",
+              }}
+            />
+
+            {/* WhatsApp button */}
             <a
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Contact us on WhatsApp"
+              className="relative flex items-center justify-center w-12 h-12 rounded-full transition-transform duration-200 hover:scale-110 active:scale-95"
               style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                width: 48,
-                height: 48,
-                borderRadius: "50%",
-                backgroundColor: "#0b0b0bff",
+                backgroundColor: "#25D366",
                 color: "#fff",
-                transition: "box-shadow 0.2s",
-                boxShadow: "0 4px 12px rgba(0,0,0,0.25)",
+                boxShadow: "0 4px 14px rgba(37, 211, 102, 0.4)",
               }}
-              className="h-12 w-12 md:h-[52px] md:w-[52px]"
             >
               <WhatsappLogo size={24} weight="fill" />
             </a>
           </m.div>
         )}
       </AnimatePresence>
+
+      <style>{`
+        @keyframes wa-pulse {
+          0%, 100% { transform: scale(1); opacity: 0.3; }
+          50% { transform: scale(1.4); opacity: 0; }
+        }
+      `}</style>
     </LazyMotion>
   );
 }

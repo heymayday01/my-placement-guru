@@ -44,23 +44,23 @@ export function Pricing() {
     const gsap = initGSAP()
     if (!sectionRef.current) return
     const cards = sectionRef.current.querySelectorAll('.pricing-card')
-    gsap.fromTo(
+    gsap.set(cards, { y: 30, opacity: 0 })
+    gsap.to(
       cards,
-      { y: 40, opacity: 0 },
       {
         y: 0,
         opacity: 1,
-        duration: 0.7,
-        stagger: 0.2,
+        duration: 0.6,
+        stagger: 0.15,
         ease: 'power3.out',
-        scrollTrigger: { trigger: sectionRef.current, start: 'top 80%', once: true },
+        scrollTrigger: { trigger: sectionRef.current, start: 'top 85%', once: true },
       }
     )
   }, [])
 
   return (
-    <section id="pricing" className="max-w-6xl mx-auto bg-gray-100 py-12 lg:py-10 px-6 overflow-hidden mt-10 rounded-3xl">
-      <div className="max-w-5xl mx-auto p-4 md:p-10">
+    <section id="pricing" className="max-w-6xl mx-auto bg-gray-100 py-8 sm:py-10 lg:py-12 px-4 sm:px-6 overflow-hidden mt-8 md:mt-10 rounded-2xl sm:rounded-3xl">
+      <div className="max-w-5xl mx-auto p-4 sm:p-6 md:p-10">
         <div className="text-center mb-10">
           <ScrollReveal delay={0.1}>
             <p className="font-display text-[12px] font-semibold tracking-[0.12em] uppercase text-[var(--color-primary)] mb-2">
@@ -79,22 +79,22 @@ export function Pricing() {
           </ScrollReveal>
         </div>
 
-        <div ref={sectionRef} className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto w-full">
+        <div ref={sectionRef} className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 max-w-3xl mx-auto w-full">
 
           {/* Free Card */}
           <div
-            className="pricing-card opacity-0 p-8 rounded-[var(--rounded-xl)] shadow-[var(--shadow-soft-lift)] flex flex-col bg-[var(--color-canvas)] border border-[var(--color-hairline)] transition-all duration-300 hover:scale-[1.02]"
+            className="pricing-card p-5 sm:p-6 md:p-8 rounded-2xl shadow-[var(--shadow-soft-lift)] flex flex-col bg-[var(--color-canvas)] border border-[var(--color-hairline)] transition-transform duration-300 hover:scale-[1.02]"
           >
-            <p className="font-display text-xs font-bold uppercase tracking-[1px] mb-2 text-[var(--color-graphite)]">
+            <p className="font-display text-[11px] font-bold uppercase tracking-[1px] mb-2 text-[var(--color-graphite)]">
               Free Session
             </p>
-            <p className="font-display text-5xl font-bold leading-none mb-1 text-[var(--color-ink)]">
+            <p className="font-display text-4xl sm:text-5xl font-bold leading-none mb-1 text-[var(--color-ink)]">
               ₹0
             </p>
-            <p className="text-xs mb-6 text-[var(--color-graphite)] font-medium">
+            <p className="text-[11px] sm:text-xs mb-5 sm:mb-6 text-[var(--color-graphite)] font-medium">
               July 26, 2026 · Limited to 100 Students
             </p>
-            <ul className="flex flex-col gap-2.5 mb-8 text-[14px] text-[var(--color-charcoal)]">
+            <ul className="flex flex-col gap-2 sm:gap-2.5 mb-6 sm:mb-8 text-[13px] sm:text-[14px] text-[var(--color-charcoal)]">
               {FREE_FEATURES.map((item) => (
                 <li key={item} className="flex items-center gap-2">
                   <CheckIcon />
@@ -106,7 +106,7 @@ export function Pricing() {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-auto block text-center px-6 py-3.5 rounded-[var(--rounded-lg)] text-[13px] font-semibold uppercase tracking-[0.7px] border border-[var(--color-ink)] bg-white text-[var(--color-ink)] hover:bg-[var(--color-ink)] hover:text-white transition-all duration-300"
+              className="mt-auto block text-center px-4 sm:px-6 py-3 sm:py-3.5 rounded-xl text-[12px] sm:text-[13px] font-semibold uppercase tracking-[0.7px] border border-[var(--color-ink)] bg-white text-[var(--color-ink)] hover:bg-[var(--color-ink)] hover:text-white transition-colors duration-300"
             >
               Register Free
             </a>
@@ -114,7 +114,7 @@ export function Pricing() {
 
           {/* Paid Card — Featured */}
           <div
-            className="pricing-card opacity-0 p-8 rounded-[var(--rounded-xl)] shadow-[var(--shadow-float)] flex flex-col relative overflow-hidden bg-[var(--color-canvas)] border-2 border-[var(--color-primary)] transition-all duration-300 hover:scale-[1.02]"
+            className="pricing-card p-5 sm:p-6 md:p-8 rounded-2xl shadow-[var(--shadow-float)] flex flex-col relative overflow-hidden bg-[var(--color-canvas)] border-2 border-[var(--color-primary)] transition-transform duration-300 hover:scale-[1.02]"
           >
             {/* Top accent bar */}
             <div
@@ -123,23 +123,23 @@ export function Pricing() {
             />
 
             <div className="flex items-start justify-between mb-2">
-              <p className="font-display text-xs font-bold uppercase tracking-[1px] text-[var(--color-graphite)]">
+              <p className="font-display text-[11px] font-bold uppercase tracking-[1px] text-[var(--color-graphite)]">
                 10-Day Masterclass
               </p>
               <span
-                className="text-[10px] font-bold px-2 py-0.5 rounded-full"
+                className="text-[9px] sm:text-[10px] font-bold px-2 py-0.5 rounded-full"
                 style={{ background: '#ff5050', color: 'white' }}
               >
                 EARLY BIRD
               </span>
             </div>
-            <p className="font-display text-5xl font-bold leading-none mb-1 text-[var(--color-primary)]">
+            <p className="font-display text-4xl sm:text-5xl font-bold leading-none mb-1 text-[var(--color-primary)]">
               ₹999
             </p>
-            <p className="text-xs mb-6 text-[var(--color-graphite)] font-medium">
+            <p className="text-[11px] sm:text-xs mb-5 sm:mb-6 text-[var(--color-graphite)] font-medium">
               August 4, 2026 Start · Nagpur Students Only
             </p>
-            <ul className="flex flex-col gap-2.5 mb-8 text-[14px] text-[var(--color-charcoal)]">
+            <ul className="flex flex-col gap-2 sm:gap-2.5 mb-6 sm:mb-8 text-[13px] sm:text-[14px] text-[var(--color-charcoal)]">
               {PAID_FEATURES.map((item) => (
                 <li key={item} className="flex items-center gap-2">
                   <CheckIcon />
@@ -151,7 +151,7 @@ export function Pricing() {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-auto block text-center px-6 py-3.5 rounded-[var(--rounded-lg)] text-[13px] font-semibold uppercase tracking-[0.7px] bg-[var(--color-primary)] text-white border border-transparent hover:bg-[var(--color-primary-deep)] transition-all duration-300 shadow-[var(--shadow-soft-lift)]"
+              className="mt-auto block text-center px-4 sm:px-6 py-3 sm:py-3.5 rounded-xl text-[12px] sm:text-[13px] font-semibold uppercase tracking-[0.7px] bg-[var(--color-primary)] text-white border border-transparent hover:bg-[var(--color-primary-deep)] transition-colors duration-300 shadow-[var(--shadow-soft-lift)]"
             >
               Enrol for ₹999
             </a>

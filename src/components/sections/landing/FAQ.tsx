@@ -16,10 +16,10 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   return (
-    <section>
-      <div className="max-w-6xl pt-10">
-        <div className="bg-gray-100 rounded-3xl p-8 shadow-soft-lift">
-          <h3 className="title text-center mb-10">
+    <section className="mt-8 md:mt-10 mb-8 md:mb-10">
+      <div className="max-w-6xl mx-auto px-0">
+        <div className="bg-gray-100 rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8 shadow-[var(--shadow-soft-lift)]">
+          <h3 className="title text-center mb-6 md:mb-10">
             Frequently Asked Questions
           </h3>
 
@@ -30,19 +30,19 @@ export function FAQ() {
                 return (
                   <div
                     key={i}
-                    className={i < FAQS.length - 1 ? 'border-b border-hairline' : ''}
+                    className={i < FAQS.length - 1 ? 'border-b border-[var(--color-hairline)]' : ''}
                   >
                     <button
-                      className="w-full flex items-center justify-between py-4.5 bg-transparent border-none cursor-pointer text-left gap-4"
+                      className="w-full flex items-center justify-between py-4 bg-transparent border-none cursor-pointer text-left gap-4"
                       onClick={() => setOpenIndex(isOpen ? null : i)}
                       aria-expanded={isOpen}
                     >
-                      <span className={`font-body text-[15px] font-medium leading-[1.4] transition-colors duration-200 ${isOpen ? 'text-primary' : 'text-ink'}`}>
+                      <span className={`font-body text-[14px] sm:text-[15px] font-medium leading-[1.4] transition-colors duration-200 ${isOpen ? 'text-[var(--color-primary)]' : 'text-[var(--color-ink)]'}`}>
                         {faq.q}
                       </span>
                       <CaretDown
                         size={18}
-                        className={`text-graphite shrink-0 transition-transform duration-250 ease-in-out ${isOpen ? 'rotate-180' : 'rotate-0'}`}
+                        className={`text-[var(--color-graphite)] shrink-0 transition-transform duration-300 ease-in-out ${isOpen ? 'rotate-180' : 'rotate-0'}`}
                       />
                     </button>
 
@@ -52,10 +52,10 @@ export function FAQ() {
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: 'auto', opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.28 }}
+                          transition={{ duration: 0.25, ease: 'easeInOut' }}
                           className="overflow-hidden"
                         >
-                          <p className="body-text pb-4.5">
+                          <p className="text-[13px] sm:text-[14px] md:text-[15px] text-[var(--color-charcoal)] leading-[1.6] pb-4">
                             {faq.a}
                           </p>
                         </m.div>
