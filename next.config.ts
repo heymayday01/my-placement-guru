@@ -1,11 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: "standalone",
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  reactStrictMode: false,
+  reactStrictMode: true,
   images: {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [375, 640, 768, 1024, 1280, 1536],
@@ -17,18 +13,17 @@ const nextConfig: NextConfig = {
       {
         source: '/(.*)',
         headers: [
-          { key: 'X-Content-Type-Options',    value: 'nosniff' },
-          { key: 'X-Frame-Options',           value: 'DENY' },
-          { key: 'Referrer-Policy',           value: 'strict-origin-when-cross-origin' },
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'X-Frame-Options', value: 'DENY' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
         ],
       },
       {
-        source: '/fonts/(.*)',
+        source: '/Images/(.*)',
         headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
       },
     ]
   },
-  allowedDevOrigins: ['192.168.1.39'],
 };
 
 export default nextConfig;

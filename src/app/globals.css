@@ -81,24 +81,16 @@ html, body {
   .text-balance { text-wrap: balance; }
 
   /* Typography tokens */
-  .t-display-xxl { font-size:72px; font-weight:500; line-height:1.0; }
-  .t-display-xl  { font-size:56px; font-weight:500; line-height:1.0; }
-  .t-display-lg  { font-size:44px; font-weight:500; line-height:1.0; }
-  .t-display-md  { font-size:32px; font-weight:500; line-height:1.0; }
   .t-display-sm  { font-size:24px; font-weight:500; line-height:1.17; }
-  .t-display-xs  { font-size:20px; font-weight:500; line-height:1.0; }
   .t-body-lg     { font-size:18px; font-weight:400; line-height:1.33; }
   .t-body-md     { font-size:16px; font-weight:400; line-height:1.38; }
   .t-body-em     { font-size:16px; font-weight:500; line-height:1.38; }
   .t-caption-md  { font-size:14px; font-weight:400; line-height:1.5; }
   .t-caption-sm  { font-size:12px; font-weight:400; line-height:1.33; }
-  .t-caption-bd  { font-size:14px; font-weight:700; line-height:1.3; }
-  .t-link-md     { font-size:16px; font-weight:500; line-height:1.38; }
   .t-button-md   {
     font-size:14px; font-weight:600; line-height:1.4;
     letter-spacing:0.7px; text-transform:uppercase;
   }
-  .t-price-md    { font-size:24px; font-weight:500; line-height:1.17; }
 }
 
 
@@ -114,10 +106,6 @@ html, body {
   @apply text-black font-semibold text-[15px] sm:text-[16px] leading-[1.6] opacity-70;
 }
 
-.text {
-  @apply text-black font-semibold text-[12px] sm:text-[14px] leading-[1.6] opacity-70;
-}
-
 .border-thin {
   @apply border-2 border-black/40 rounded-3xl shadow-[var(--shadow-soft-lift)]
 }
@@ -130,10 +118,6 @@ html, body {
 
 .hero-para {
   @apply font-body text-[16px] md:text-[18px] font-normal text-steel leading-[1.55] max-w-[520px] text-center text-balance mb-8;
-}
-
-.tag-label {
-  @apply font-display text-[12px] font-semibold tracking-[0.12em] uppercase text-primary mb-2;
 }
 
 .body-text {
@@ -160,10 +144,6 @@ html, body {
 /* Cards & UI elements */
 .card-flat {
   @apply bg-canvas rounded-xl shadow-soft-lift p-6 md:p-8 border border-hairline relative overflow-hidden flex flex-col h-full;
-}
-
-.card-accent {
-  @apply bg-canvas rounded-xl shadow-float p-6 md:p-8 border-2 border-primary relative overflow-hidden flex flex-col h-full;
 }
 
 .icon-chip {

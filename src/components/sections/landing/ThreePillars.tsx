@@ -1,9 +1,6 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { SectionLabel } from "@/components/ui/SectionLabel";
-import { Card } from "@/components/ui/Card";
-import { Button } from "@/components/ui/Button";
 import { THREE_PILLARS } from "@/lib/constants";
 import { initGSAP } from "@/lib/gsap";
 import * as PhosphorIcons from "@phosphor-icons/react";
@@ -50,7 +47,7 @@ export function ThreePillars() {
           <LazyMotion features={domAnimation}>
             {THREE_PILLARS.map((pillar, i) => {
               const Icon =
-                (PhosphorIcons as any)[pillar.icon] || PhosphorIcons.Star;
+                (PhosphorIcons as unknown as Record<string, React.ComponentType<{ size?: number; weight?: string }>>)[pillar.icon] || PhosphorIcons.Star;
               return (
                 <div key={i} className="pillar-card opacity-0 h-full group">
                   {/* card-product: canvas bg, 16px radius, soft-lift shadow */}

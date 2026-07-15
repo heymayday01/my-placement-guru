@@ -20,10 +20,9 @@ export const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, Bu
       const id = Date.now()
       setRipples(prev => [...prev, { x: e.clientX - rect.left, y: e.clientY - rect.top, id }])
       setTimeout(() => setRipples(prev => prev.filter(r => r.id !== id)), 600)
-      if (props.onClick) props.onClick(e as any)
+      if (props.onClick) props.onClick(e as React.MouseEvent<HTMLButtonElement, MouseEvent>)
     }
 
-    /* ── Tailwind Class Mappings ── */
     const sizeClasses: Record<string, string> = {
       sm: 'px-[18px] h-[38px] text-[13px]',
       md: 'px-[24px] h-[44px] text-[14px]',
@@ -61,15 +60,13 @@ export const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, Bu
       </>
     )
 
-    const isLink = href !== undefined
-
-    if (isLink) {
+    if (href !== undefined) {
       return (
         <Link
-          href={href!}
+          href={href}
           className={buttonClasses}
-          onClick={handleRipple as any}
-          ref={ref as any}
+          onClick={handleRipple as React.MouseEventHandler<HTMLAnchorElement>}
+          ref={ref as React.Ref<HTMLAnchorElement>}
         >
           {inner}
         </Link>
@@ -79,7 +76,7 @@ export const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, Bu
     return (
       <button
         {...props}
-        ref={ref as any}
+        ref={ref as React.Ref<HTMLButtonElement>}
         className={buttonClasses}
         onClick={handleRipple}
       >

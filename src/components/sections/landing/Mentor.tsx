@@ -2,7 +2,6 @@
 
 import React from 'react'
 import Image from 'next/image'
-import { SectionLabel } from '@/components/ui/SectionLabel'
 import { ScrollReveal } from '@/components/animations/ScrollReveal'
 import { LinkedinLogo, Briefcase, Trophy } from '@phosphor-icons/react'
 

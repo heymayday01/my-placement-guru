@@ -2,11 +2,9 @@
 
 import React from 'react'
 import Image from 'next/image'
-import { Card } from '@/components/ui/Card'
 import { LogoMarquee } from '@/components/smoothui/logo-cloud-3/Logos'
 import { ScrollReveal } from '@/components/animations/ScrollReveal'
 import { MENTOR_STATS, MENTOR_NAME } from '@/lib/constants'
-import { Check, IdentificationBadge, Trophy, Briefcase, Handshake } from '@phosphor-icons/react'
 
 export function WebinarDetails() {
   return (

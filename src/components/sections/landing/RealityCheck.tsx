@@ -1,7 +1,6 @@
 'use client'
 
 import React from 'react'
-import { SectionLabel } from '@/components/ui/SectionLabel'
 import { CounterStat } from '@/components/ui/CounterStat'
 import { ScrollReveal } from '@/components/animations/ScrollReveal'
 

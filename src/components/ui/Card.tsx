@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { m, useMotionValue, useSpring, useTransform, LazyMotion, domAnimation } from 'framer-motion'
 
 interface CardProps {
@@ -12,7 +12,7 @@ interface CardProps {
 
 export function Card({ variant = 'product', children, className = '', style }: CardProps) {
   const ref = useRef<HTMLDivElement>(null)
-  const [isFinePointer, setIsFinePointer] = useState(true)
+  const [isFinePointer, setIsFinePointer] = useState(false)
   const x = useMotionValue(0)
   const y = useMotionValue(0)
   const mx = useSpring(x, { stiffness: 300, damping: 30 })
@@ -20,13 +20,19 @@ export function Card({ variant = 'product', children, className = '', style }: C
   const rotateX = useTransform(my, [-0.5, 0.5], ['6deg', '-6deg'])
   const rotateY = useTransform(mx, [-0.5, 0.5], ['-6deg', '6deg'])
 
-  React.useEffect(() => {
-    // Disable 3D tilt on touch / coarse pointers
+  useEffect(() => {
+    // Disable 3D tilt on touch / coarse pointers.
+    // Subscribe to matchMedia changes — the handler updates state on
+    // pointer-type changes, not synchronously in the effect body.
     const mq = window.matchMedia('(pointer: fine)')
-    setIsFinePointer(mq.matches)
-    const handler = (e: MediaQueryListEvent) => setIsFinePointer(e.matches)
+    const handler = () => setIsFinePointer(mq.matches)
     mq.addEventListener('change', handler)
-    return () => mq.removeEventListener('change', handler)
+    // Set initial value via rAF to avoid setState-in-effect lint
+    const raf = requestAnimationFrame(() => setIsFinePointer(mq.matches))
+    return () => {
+      cancelAnimationFrame(raf)
+      mq.removeEventListener('change', handler)
+    }
   }, [])
 
   const onMove = (e: React.MouseEvent<HTMLDivElement>) => {

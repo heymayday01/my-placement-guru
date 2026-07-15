@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Card } from '@/components/ui/Card'
 import { WhatsappLogo, CheckCircle, Spinner, User, Envelope, Phone, GraduationCap, IdentificationCard } from '@phosphor-icons/react'
 import { WHATSAPP_URL } from '@/lib/constants'
 
